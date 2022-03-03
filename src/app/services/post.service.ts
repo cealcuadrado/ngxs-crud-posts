@@ -20,4 +20,8 @@ export class PostService {
   deletePost(id: number): Observable<Post> {
     return this.http.delete<Post>(`/posts/${id}`);
   }
+
+  updatePost(payload: any, id: number): Observable<Post> {
+    return this.http.put<Post>(`/posts/${id}`, payload);
+  }
 }

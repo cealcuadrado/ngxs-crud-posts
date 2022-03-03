@@ -1,4 +1,4 @@
-import { GetPosts, DeletePosts } from './../actions/app.actions';
+import { GetPosts, DeletePosts, UpdatePosts } from './../actions/app.actions';
 import { Observable } from 'rxjs';
 import { AppState } from './../states/app.states';
 import { Component, OnInit } from '@angular/core';
@@ -53,9 +53,15 @@ export class LayoutComponent implements OnInit {
     return formField.touched && formField.invalid;
   }
 
-  updatePost(post: Post, index: number): void {
-    console.log(post);
-    console.log(index);
+  updatePost(post: Post, id: number, index: number): void {
+    let updatePost: Post = {
+      userId: 201,
+      id: 501,
+      title: 'Updated title',
+      body: 'Updated body'
+    };
+
+    this.store.dispatch(new UpdatePosts(updatePost, id, index));
   }
 
   deletePost(post: Post): void {

@@ -14,3 +14,9 @@ export class DeletePosts {
   constructor(public id: number) {}
 }
 
+export class UpdatePosts {
+  static readonly type = 'Update Posts';
+
+  constructor(public payload: any, public id: number, public i: number) {}
+}
+

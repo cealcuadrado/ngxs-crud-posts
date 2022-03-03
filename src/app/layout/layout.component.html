@@ -50,11 +50,10 @@
   </div>
   <div class="col-12 col-lg-9">
     <div *ngFor="let post of posts; index as i">
-      <app-post
-        [post]="post"
-        (update)="updatePost($event, i)"
-        (delete)="deletePost($event)">
-      </app-post>
+      <div *ngIf="i > 0">
+        <app-post [post]="post" (update)="updatePost($event, post.id, i)" (delete)="deletePost($event)">
+        </app-post>
+      </div>
     </div>
   </div>
 </div>
