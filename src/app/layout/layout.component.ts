@@ -1,4 +1,4 @@
-import { GetPosts, DeletePosts, UpdatePosts } from './../actions/app.actions';
+import { GetPosts, DeletePosts, UpdatePosts, AddPosts } from './../actions/app.actions';
 import { Observable } from 'rxjs';
 import { AppState } from './../states/app.states';
 import { Component, OnInit } from '@angular/core';
@@ -39,7 +39,7 @@ export class LayoutComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.postForm.value);
+    this.store.dispatch(new AddPosts(this.postForm.value));
     this.postForm.reset();
   }
 
