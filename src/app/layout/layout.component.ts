@@ -1,4 +1,4 @@
-import { GetPosts } from './../actions/app.actions';
+import { GetPosts, DeletePosts } from './../actions/app.actions';
 import { Observable } from 'rxjs';
 import { AppState } from './../states/app.states';
 import { Component, OnInit } from '@angular/core';
@@ -59,6 +59,6 @@ export class LayoutComponent implements OnInit {
   }
 
   deletePost(post: Post): void {
-    console.log(post);
+    this.store.dispatch(new DeletePosts(post.id));
   }
 }

@@ -1,4 +1,4 @@
-import { GetPosts, AddPosts } from './../actions/app.actions';
+import { GetPosts, AddPosts, DeletePosts } from './../actions/app.actions';
 import { PostService } from './../services/post.service';
 import { Injectable } from '@angular/core';
 import { Action, State, Selector, StateContext } from '@ngxs/store';
@@ -53,6 +53,24 @@ export class AppState {
         }
       )
     )
+  }
+
+  @Action(DeletePosts)
+  deleteDataFromState(ctx: StateContext<PostStateModel>, { id }: DeletePosts) {
+    return this._post.deletePost(id).pipe(
+      tap(
+        returnData => {
+          const state = ctx.getState();
+
+          let updatedPosts = state.posts.filter(post => post.id !== id);
+
+          ctx.setState({
+            ...state,
+            posts: updatedPosts
+          });
+        }
+      )
+    );
   }
 }
 

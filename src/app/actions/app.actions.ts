@@ -7,3 +7,10 @@ export class AddPosts {
 
   constructor(public payload: any) {}
 }
+
+export class DeletePosts {
+  static readonly type = 'Delete Posts';
+
+  constructor(public id: number) {}
+}
+
