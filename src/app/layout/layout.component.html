@@ -1,1 +1,60 @@
-<p>layout works!</p>
+<div class="row">
+  <div class="col-12 col-lg-3">
+    <h5>Add post</h5>
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+      <div class="form-group mb-2">
+        <label for="userId">User ID</label>
+        <input type="text" class="form-control"
+          name="userId" id="userId"
+          formControlName="userId" [ngClass]="colorInvalidInput('userId')"/>
+        <small class="text-danger" *ngIf="isInvalidInput('userId')">
+          This field is required
+        </small>
+      </div>
+      <div class="form-group mb-2">
+        <label for="id">ID</label>
+        <input type="text" class="form-control"
+          name="id" id="id"
+          formControlName="id" [ngClass]="colorInvalidInput('id')"/>
+        <small class="text-danger" *ngIf="isInvalidInput('id')">
+          This field is required
+        </small>
+      </div>
+      <div class="form-group mb-2">
+        <label for="title">Title</label>
+        <input type="text" class="form-control"
+          name="title" id="title"
+          formControlName="title" [ngClass]="colorInvalidInput('title')"/>
+        <small class="text-danger" *ngIf="isInvalidInput('title')">
+          This field is required
+        </small>
+      </div>
+      <div class="form-group mb-4">
+        <label for="body">Body</label>
+        <textarea class="form-control"
+        name="body" id="body"
+        formControlName="body" [ngClass]="colorInvalidInput('body')"></textarea>
+        <small class="text-danger" *ngIf="isInvalidInput('body')">
+          This field is required
+        </small>
+      </div>
+      <div class="form-group mb-2">
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary" [disabled]="postForm.invalid">
+            <i class="fa-solid fa-plus fa-fw"></i>
+            Add post
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-12 col-lg-9">
+    <div *ngFor="let post of posts; index as i">
+      <app-post
+        [post]="post"
+        (update)="updatePost($event, i)"
+        (delete)="deletePost($event)">
+      </app-post>
+    </div>
+  </div>
+</div>

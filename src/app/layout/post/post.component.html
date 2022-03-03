@@ -1,0 +1,18 @@
+<div class="card mb-2">
+  <div class="card-body">
+    <div class="d-flex flex-column flex-lg-row justify-content-between mb-2">
+      <h4>{{post.title}}</h4>
+      <div class="btn-group">
+        <button class="btn btn-outline-warning" title="Update" (click)="updatePost()">
+          <i class="fa-solid fa-pencil"></i>
+        </button>
+        <button class="btn btn-danger" title="Delete" (click)="deletePost()">
+          <i class="fa-solid fa-times"></i>
+        </button>
+      </div>
+    </div>
+    <p>{{post.body}}</p>
+    <hr/>
+    <p>User ID: {{post.userId}}. ID: {{post.id}}</p>
+  </div>
+</div>
