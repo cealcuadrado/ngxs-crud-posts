@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Post } from '../interfaces/post';
+import { PostService } from '../services/post.service';
 
 @Component({
   selector: 'app-layout',
@@ -45,7 +46,8 @@ export class LayoutComponent implements OnInit {
     }
   ];
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private post: PostService
   ) {}
 
   ngOnInit(): void {
@@ -54,6 +56,10 @@ export class LayoutComponent implements OnInit {
       id: new FormControl('', [Validators.required]),
       title: new FormControl('', [Validators.required]),
       body: new FormControl('', [Validators.required])
+    });
+
+    this.post.fetchPosts().subscribe(posts => {
+      console.log(posts);
     });
   }
 
